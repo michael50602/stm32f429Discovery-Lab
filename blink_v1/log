@@ -1,0 +1,76 @@
+openocd \
+	-f interface/stlink-v2.cfg \
+	-f target/stm32f4x.cfg \
+	-c "init" \
+	-c "reset init" \
+	-c "flash probe 0" \
+	-c "flash info 0" \
+	-c "flash write_image erase blink.bin 0x8000000" \
+	-c "reset run" -c shutdown 
+Open On-Chip Debugger 0.9.0-dev-00415-g2d4ae3f (2015-04-20-22:33)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+Info : auto-selecting first available session transport "hla_swd". To override use 'transport select <transport>'.
+Info : The selected transport took over low-level target control. The results might differ compared to plain JTAG/SWD
+adapter speed: 2000 kHz
+adapter_nsrst_delay: 100
+none separate
+Info : Unable to match requested speed 2000 kHz, using 1800 kHz
+Info : Unable to match requested speed 2000 kHz, using 1800 kHz
+Info : clock speed 1800 kHz
+Info : STLINK v2 JTAG v17 API v2 SWIM v0 VID 0x0483 PID 0x3748
+Info : using stlink api v2
+Info : Target voltage: 2.881973
+Info : stm32f4x.cpu: hardware has 6 breakpoints, 4 watchpoints
+target state: halted
+target halted due to debug-request, current mode: Thread 
+xPSR: 0x01000000 pc: 0x00000008 msp: 0x20001000
+Info : device id = 0x10036419
+Info : flash size = 2048kbytes
+flash 'stm32f2x' found at 0x08000000
+#0 : stm32f2x at 0x08000000, size 0x00200000, buswidth 0, chipwidth 0
+	#  0: 0x00000000 (0x4000 16kB) not protected
+	#  1: 0x00004000 (0x4000 16kB) not protected
+	#  2: 0x00008000 (0x4000 16kB) not protected
+	#  3: 0x0000c000 (0x4000 16kB) not protected
+	#  4: 0x00010000 (0x10000 64kB) not protected
+	#  5: 0x00020000 (0x20000 128kB) not protected
+	#  6: 0x00040000 (0x20000 128kB) not protected
+	#  7: 0x00060000 (0x20000 128kB) not protected
+	#  8: 0x00080000 (0x20000 128kB) not protected
+	#  9: 0x000a0000 (0x20000 128kB) not protected
+	# 10: 0x000c0000 (0x20000 128kB) not protected
+	# 11: 0x000e0000 (0x20000 128kB) not protected
+	# 12: 0x00100000 (0x4000 16kB) not protected
+	# 13: 0x00104000 (0x4000 16kB) not protected
+	# 14: 0x00108000 (0x4000 16kB) not protected
+	# 15: 0x0010c000 (0x4000 16kB) not protected
+	# 16: 0x00110000 (0x10000 64kB) not protected
+	# 17: 0x00120000 (0x20000 128kB) not protected
+	# 18: 0x00140000 (0x20000 128kB) not protected
+	# 19: 0x00160000 (0x20000 128kB) not protected
+	# 20: 0x00180000 (0x20000 128kB) not protected
+	# 21: 0x001a0000 (0x20000 128kB) not protected
+	# 22: 0x001c0000 (0x20000 128kB) not protected
+	# 23: 0x001e0000 (0x20000 128kB) not protected
+STM32F4xx - Rev: Y
+auto erase enabled
+target state: halted
+target halted due to breakpoint, current mode: Thread 
+xPSR: 0x61000000 pc: 0x20000042 msp: 0x20001000
+wrote 16384 bytes from file blink.bin in 1.212991s (13.191 KiB/s)
+shutdown command invoked
+st-flash write blink.bin 0x8000000
+2015-04-21T02:42:38 INFO src/stlink-common.c: Loading device parameters....
+2015-04-21T02:42:38 INFO src/stlink-common.c: Device connected is: F42x and F43x device, id 0x10036419
+2015-04-21T02:42:38 INFO src/stlink-common.c: SRAM size: 0x40000 bytes (256 KiB), Flash: 0x200000 bytes (2048 KiB) in pages of 16384 bytes
+2015-04-21T02:42:38 INFO src/stlink-common.c: Attempting to write 124 (0x7c) bytes to stm32 address: 134217728 (0x8000000)
+EraseFlash - Sector:0x0 Size:0x4000
+Flash page at addr: 0x08000000 erased2015-04-21T02:42:39 INFO src/stlink-common.c: Finished erasing 1 pages of 16384 (0x4000) bytes
+2015-04-21T02:42:39 INFO src/stlink-common.c: Starting Flash write for F2/F4
+2015-04-21T02:42:39 INFO src/stlink-common.c: Successfully loaded flash loader in sram
+2015-04-21T02:42:39 INFO src/stlink-common.c: Starting verification of write complete
+2015-04-21T02:42:39 INFO src/stlink-common.c: Flash written and verified! jolly good!
+
+size: 124
