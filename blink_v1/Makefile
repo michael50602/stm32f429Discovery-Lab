@@ -8,7 +8,8 @@ blink.out: blink.o simple.ld
 blink.bin: blink.out
 		$(CROSS_COMPILE)objcopy -j .text -O binary blink.out blink.bin
 flash: $(blink.bin)
-	openocd \
+	st-flash write blink.bin 0x8000000
+#	openocd \
 		-f interface/stlink-v2.cfg \
 		-f target/stm32f4x.cfg \
 		-c "init" \
@@ -17,6 +18,6 @@ flash: $(blink.bin)
 		-c "flash info 0" \
 		-c "flash write_image erase blink.bin 0x8000000" \
 		-c "reset run" -c shutdown 
-	st-flash write blink.bin 0x8000000
+#	st-flash write blink.bin 0x8000000
 clean:
 		rm -f *.o *.out *.bin
