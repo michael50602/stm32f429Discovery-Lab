@@ -8,8 +8,8 @@ blink.out: blink.o simple.ld
 blink.bin: blink.out
 		$(CROSS_COMPILE)objcopy -j .text -O binary blink.out blink.bin
 flash: $(blink.bin)
-	st-flash write blink.bin 0x8000000
-#	openocd \
+#	st-flash write blink.bin 0x8000000
+	openocd \
 		-f interface/stlink-v2.cfg \
 		-f target/stm32f4x.cfg \
 		-c "init" \
